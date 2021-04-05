@@ -510,13 +510,47 @@ func main() {
 				{
 					Name:    "list",
 					Aliases: []string{"l"},
-					Action:  pageRules,
+					Action:  pageRuleList,
 					Usage:   "List Page Rules for a zone",
 					Flags: []cli.Flag{
 						&cli.StringFlag{
 							Name:  "zone",
 							Usage: "zone name",
 						},
+					},
+				},
+				{
+					Name:    "enable",
+					Aliases: []string{"e"},
+					Action:  pageRuleEnable,
+					Usage:   "Enable one page rule",
+					Flags: []cli.Flag{
+						&cli.StringFlag{
+							Name:  "zone",
+							Usage: "zone name",
+						},
+						&cli.StringFlag{
+							Name:  "rule",
+							Usage: "rule ID",
+						},
+
+					},
+				},
+				{
+					Name:    "disable",
+					Aliases: []string{"d"},
+					Action:  pageRuleEnable,
+					Usage:   "Disable one page rule",
+					Flags: []cli.Flag{
+						&cli.StringFlag{
+							Name:  "zone",
+							Usage: "zone name",
+						},
+						&cli.StringFlag{
+							Name:  "rule",
+							Usage: "rule ID",
+						},
+
 					},
 				},
 			},
