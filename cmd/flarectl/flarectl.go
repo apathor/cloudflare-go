@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-
 	cloudflare "github.com/cloudflare/cloudflare-go"
 	"github.com/urfave/cli/v2"
 )
@@ -31,6 +30,10 @@ func main() {
 		&cli.BoolFlag{
 			Name:  "json",
 			Usage: "show output as JSON instead of as a table",
+		},
+		&cli.BoolFlag{
+			Name:  "verbose",
+			Usage: "show more log output",
 		},
 	}
 	app.Commands = []*cli.Command{
@@ -510,13 +513,47 @@ func main() {
 				{
 					Name:    "list",
 					Aliases: []string{"l"},
-					Action:  pageRules,
+					Action:  pageRuleList,
 					Usage:   "List Page Rules for a zone",
 					Flags: []cli.Flag{
 						&cli.StringFlag{
 							Name:  "zone",
 							Usage: "zone name",
 						},
+					},
+				},
+				{
+					Name:    "enable",
+					Aliases: []string{"e"},
+					Action:  pageRuleEnable,
+					Usage:   "Enable one page rule",
+					Flags: []cli.Flag{
+						&cli.StringFlag{
+							Name:  "zone",
+							Usage: "zone name",
+						},
+						&cli.StringFlag{
+							Name:  "rule",
+							Usage: "rule ID",
+						},
+
+					},
+				},
+				{
+					Name:    "disable",
+					Aliases: []string{"d"},
+					Action:  pageRuleDisable,
+					Usage:   "Disable one page rule",
+					Flags: []cli.Flag{
+						&cli.StringFlag{
+							Name:  "zone",
+							Usage: "zone name",
+						},
+						&cli.StringFlag{
+							Name:  "rule",
+							Usage: "rule ID",
+						},
+
 					},
 				},
 			},
